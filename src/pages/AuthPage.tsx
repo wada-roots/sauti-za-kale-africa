@@ -61,13 +61,13 @@ const AuthPage = () => {
 
   const checkUserRoleAndRedirect = async (userId: string) => {
     try {
-      const { data: roles } = await supabase.rpc('get_user_roles', { 
+      const { data: roles } = await (supabase.rpc('get_user_roles' as any, { 
         _user_id: userId 
-      });
+      }) as any);
 
-      if (roles && roles.includes('admin')) {
+      if (roles && (roles as string[]).includes('admin')) {
         navigate("/admin");
-      } else if (roles && roles.includes('author')) {
+      } else if (roles && (roles as string[]).includes('author')) {
         navigate("/authors-dashboard");
       } else {
         navigate("/");

@@ -27,10 +27,10 @@ const UserManagement = () => {
 
   const loadUsers = async () => {
     try {
-      const { data, error } = await supabase
-        .from('user_roles')
+      const { data, error } = await (supabase
+        .from('user_roles' as any)
         .select('*')
-        .order('created_at', { ascending: false });
+        .order('created_at', { ascending: false }) as any);
 
       if (error) throw error;
       setUsers(data || []);

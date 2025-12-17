@@ -42,8 +42,8 @@ const AdminLayout = () => {
       setUser(user);
 
       // Check if user has admin role
-      const { data: roles, error } = await supabase
-        .rpc('get_user_roles', { _user_id: user.id });
+      const { data: roles, error } = await (supabase
+        .rpc('get_user_roles' as any, { _user_id: user.id }) as any);
 
       if (error) {
         console.error("Error checking admin role:", error);
@@ -51,7 +51,7 @@ const AdminLayout = () => {
         return;
       }
 
-      const hasAdminRole = roles?.includes('admin');
+      const hasAdminRole = roles && (roles as string[]).includes('admin');
       setIsAdmin(hasAdminRole);
 
       if (!hasAdminRole) {

@@ -30,13 +30,13 @@ const ContentReview = () => {
 
   const loadSubmissions = async () => {
     try {
-      const { data, error } = await supabase
-        .from('content_submissions')
+      const { data, error } = await (supabase
+        .from('content_submissions' as any)
         .select('*')
-        .order('created_at', { ascending: false });
+        .order('created_at', { ascending: false }) as any);
 
       if (error) throw error;
-      setSubmissions(data || []);
+      setSubmissions((data || []) as Submission[]);
     } catch (error) {
       console.error("Error loading submissions:", error);
       toast.error("Failed to load submissions");
@@ -47,13 +47,13 @@ const ContentReview = () => {
 
   const handleReview = async (id: string, status: 'approved' | 'rejected') => {
     try {
-      const { error } = await supabase
-        .from('content_submissions')
+      const { error } = await (supabase
+        .from('content_submissions' as any)
         .update({
           status,
           review_notes: reviewNotes[id] || null,
-        })
-        .eq('id', id);
+        } as any)
+        .eq('id', id) as any);
 
       if (error) throw error;
 
@@ -68,11 +68,11 @@ const ContentReview = () => {
 
   const handlePublish = async (id: string) => {
     try {
-      const { error } = await supabase
-        .from('content_submissions')
-        .update({ status: 'published' })
+      const { error } = await (supabase
+        .from('content_submissions' as any)
+        .update({ status: 'published' } as any)
         .eq('id', id)
-        .eq('status', 'approved');
+        .eq('status', 'approved') as any);
 
       if (error) throw error;
 

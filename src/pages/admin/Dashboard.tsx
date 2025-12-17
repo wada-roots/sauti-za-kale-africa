@@ -18,26 +18,26 @@ const AdminDashboard = () => {
   const loadStats = async () => {
     try {
       // Get total submissions
-      const { count: totalSubmissions } = await supabase
-        .from('content_submissions')
-        .select('*', { count: 'exact', head: true });
+      const { count: totalSubmissions } = await (supabase
+        .from('content_submissions' as any)
+        .select('*', { count: 'exact', head: true }) as any);
 
       // Get pending submissions
-      const { count: pendingSubmissions } = await supabase
-        .from('content_submissions')
+      const { count: pendingSubmissions } = await (supabase
+        .from('content_submissions' as any)
         .select('*', { count: 'exact', head: true })
-        .eq('status', 'pending');
+        .eq('status', 'pending') as any);
 
       // Get approved submissions
-      const { count: approvedSubmissions } = await supabase
-        .from('content_submissions')
+      const { count: approvedSubmissions } = await (supabase
+        .from('content_submissions' as any)
         .select('*', { count: 'exact', head: true })
-        .eq('status', 'approved');
+        .eq('status', 'approved') as any);
 
       // Get total users
-      const { count: totalUsers } = await supabase
-        .from('user_roles')
-        .select('user_id', { count: 'exact', head: true });
+      const { count: totalUsers } = await (supabase
+        .from('user_roles' as any)
+        .select('user_id', { count: 'exact', head: true }) as any);
 
       setStats({
         totalSubmissions: totalSubmissions || 0,

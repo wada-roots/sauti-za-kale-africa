@@ -68,16 +68,16 @@ const AuthorsDashboard = () => {
   const loadSubmissions = async () => {
     setLoadingSubmissions(true);
     try {
-      const { data, error } = await supabase
-        .from('content_submissions')
+      const { data, error } = await (supabase
+        .from('content_submissions' as any)
         .select('*')
-        .order('created_at', { ascending: false });
+        .order('created_at', { ascending: false }) as any);
 
       if (error) {
         console.error('Error loading submissions:', error);
         toast.error("Failed to load your submissions");
       } else {
-        setSubmissions(data || []);
+        setSubmissions((data || []) as ContentSubmission[]);
       }
     } catch (error) {
       console.error('Error loading submissions:', error);
@@ -111,15 +111,15 @@ const AuthorsDashboard = () => {
     setIsLoading(true);
     
     try {
-      const { error } = await supabase
-        .from('content_submissions')
+      const { error } = await (supabase
+        .from('content_submissions' as any)
         .insert({
           user_id: user.id,
           title,
           content,
           content_type: contentType,
           tribe: tribe || null,
-        });
+        } as any) as any);
 
       if (error) {
         console.error('Error submitting content:', error);

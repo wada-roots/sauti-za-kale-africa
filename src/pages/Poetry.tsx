@@ -29,15 +29,15 @@ const Poetry = () => {
 
   const loadPoetry = async () => {
     try {
-      const { data, error } = await supabase
-        .from("content_submissions")
+      const { data, error } = await (supabase
+        .from("content_submissions" as any)
         .select("*")
         .eq("status", "approved")
         .eq("content_type", "poetry")
-        .order("created_at", { ascending: false });
+        .order("created_at", { ascending: false }) as any);
 
       if (error) throw error;
-      setPoetryItems(data || []);
+      setPoetryItems((data || []) as PoetryItem[]);
     } catch (error: any) {
       toast({
         title: "Error loading poetry",
