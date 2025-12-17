@@ -29,15 +29,15 @@ const Stories = () => {
 
   const loadStories = async () => {
     try {
-      const { data, error } = await supabase
-        .from("content_submissions")
+      const { data, error } = await (supabase
+        .from("content_submissions" as any)
         .select("*")
         .eq("status", "approved")
         .eq("content_type", "story")
-        .order("created_at", { ascending: false });
+        .order("created_at", { ascending: false }) as any);
 
       if (error) throw error;
-      setStories(data || []);
+      setStories((data || []) as Story[]);
     } catch (error: any) {
       toast({
         title: "Error loading stories",

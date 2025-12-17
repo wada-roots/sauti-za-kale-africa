@@ -36,28 +36,28 @@ const ContentComments = ({ contentId, user }: ContentCommentsProps) => {
 
   const loadComments = async () => {
     try {
-      const { data, error } = await supabase
-        .from('content_comments')
+      const { data, error } = await (supabase
+        .from('content_comments' as any)
         .select('*')
         .eq('content_id', contentId)
-        .order('created_at', { ascending: false });
+        .order('created_at', { ascending: false }) as any);
 
       if (error) throw error;
       
       // Fetch profiles separately
       if (data && data.length > 0) {
-        const userIds = [...new Set(data.map(c => c.user_id))];
-        const { data: profiles } = await supabase
-          .from('profiles')
-          .select('id, full_name')
-          .in('id', userIds);
+        const userIds = [...new Set(data.map((c: any) => c.user_id))];
+        const { data: profiles } = await (supabase
+          .from('profiles' as any)
+          .select('user_id, full_name')
+          .in('user_id', userIds) as any);
         
-        const commentsWithProfiles = data.map(comment => ({
+        const commentsWithProfiles = data.map((comment: any) => ({
           ...comment,
-          profiles: profiles?.find(p => p.id === comment.user_id) || null
+          profiles: profiles?.find((p: any) => p.user_id === comment.user_id) || null
         }));
         
-        setComments(commentsWithProfiles as any);
+        setComments(commentsWithProfiles as Comment[]);
       } else {
         setComments([]);
       }
@@ -72,13 +72,13 @@ const ContentComments = ({ contentId, user }: ContentCommentsProps) => {
 
     setLoading(true);
     try {
-      const { error } = await supabase
-        .from('content_comments')
+      const { error } = await (supabase
+        .from('content_comments' as any)
         .insert({
           content_id: contentId,
           user_id: user.id,
           comment: newComment.trim(),
-        });
+        } as any) as any);
 
       if (error) throw error;
 
@@ -95,10 +95,10 @@ const ContentComments = ({ contentId, user }: ContentCommentsProps) => {
 
   const handleDeleteComment = async (commentId: string) => {
     try {
-      const { error } = await supabase
-        .from('content_comments')
+      const { error } = await (supabase
+        .from('content_comments' as any)
         .delete()
-        .eq('id', commentId);
+        .eq('id', commentId) as any);
 
       if (error) throw error;
 

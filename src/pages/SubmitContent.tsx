@@ -55,8 +55,8 @@ const SubmitContent = () => {
     setLoading(true);
 
     try {
-      const { error } = await supabase
-        .from("content_submissions")
+      const { error } = await (supabase
+        .from("content_submissions" as any)
         .insert([
           {
             user_id: user.id,
@@ -66,7 +66,7 @@ const SubmitContent = () => {
             tribe: formData.tribe || null,
             status: "pending",
           },
-        ]);
+        ] as any) as any);
 
       if (error) throw error;
 

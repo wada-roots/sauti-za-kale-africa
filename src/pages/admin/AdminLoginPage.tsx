@@ -19,13 +19,13 @@ const AdminLoginPage = () => {
     const checkAdminSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (session?.user) {
-        const { data: roleData } = await supabase
-          .from("user_roles")
+        const { data: roleData } = await (supabase
+          .from("user_roles" as any)
           .select("role")
           .eq("user_id", session.user.id)
-          .single();
+          .single() as any);
 
-        if (roleData?.role === "admin") {
+        if (roleData && roleData.role === "admin") {
           navigate("/admin");
         }
       }
@@ -60,9 +60,9 @@ const AdminLoginPage = () => {
       }
 
       // Verify admin role using RPC function
-      const { data: roles, error: roleError } = await supabase.rpc('get_user_roles', {
+      const { data: roles, error: roleError } = await (supabase.rpc('get_user_roles' as any, {
         _user_id: user.id
-      });
+      }) as any);
 
       if (roleError) {
         console.error("Error checking admin role:", roleError);
@@ -71,7 +71,7 @@ const AdminLoginPage = () => {
         return;
       }
 
-      if (!roles || !roles.includes('admin')) {
+      if (!roles || !(roles as string[]).includes('admin')) {
         await supabase.auth.signOut();
         toast.error("Access denied. Admin privileges required.");
         return;

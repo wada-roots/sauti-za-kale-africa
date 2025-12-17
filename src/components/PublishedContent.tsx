@@ -23,15 +23,15 @@ const PublishedContent = () => {
 
   const loadPublishedContent = async () => {
     try {
-      const { data, error } = await supabase
-        .from('content_submissions')
+      const { data, error } = await (supabase
+        .from('content_submissions' as any)
         .select('*')
         .eq('status', 'published')
         .order('created_at', { ascending: false })
-        .limit(6);
+        .limit(6) as any);
 
       if (error) throw error;
-      setContent(data || []);
+      setContent((data || []) as Content[]);
     } catch (error) {
       console.error("Error loading published content:", error);
     } finally {
