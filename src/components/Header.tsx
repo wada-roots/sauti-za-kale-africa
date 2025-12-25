@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, Search, ChevronDown, X } from "lucide-react";
+import skAfricaLogo from "@/assets/sk-africa-logo.png";
 
 import {
   DropdownMenu,
@@ -19,9 +20,9 @@ const Header = () => {
           {/* Logo with Kenyan Flag */}
           <div className="flex items-center space-x-2 sm:space-x-3">
             <img 
-              src="/images/branding/logo2.jpg"
-              alt="Kenyan Flag"
-              className="w-8 h-6 sm:w-12 sm:h-8 object-cover rounded-sm shadow-md border border-border"
+              src={skAfricaLogo}
+              alt="SK Africa Logo"
+              className="h-10 sm:h-12 w-auto object-contain"
             />
             <div className="hidden sm:block">
               <h1 className="text-lg sm:text-xl font-bold text-foreground">Sauti Za Kale Africa</h1>
