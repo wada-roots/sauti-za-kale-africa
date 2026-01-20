@@ -7,7 +7,7 @@ const categories = [
     icon: BookOpen,
     title: "Stories & Folklore",
     description: "Traditional tales and oral literature",
-    count: "200+ stories",
+    href: "/stories",
     color: "text-heritage-green",
     bgColor: "bg-heritage-green/10"
   },
@@ -15,7 +15,7 @@ const categories = [
     icon: Mic,
     title: "Poetry & Songs",
     description: "Traditional poems and songs",
-    count: "150+ pieces",
+    href: "/poetry",
     color: "text-ubuntu",
     bgColor: "bg-ubuntu/10"
   },
@@ -23,7 +23,7 @@ const categories = [
     icon: Leaf,
     title: "Medicinal Plants",
     description: "Traditional healing knowledge",
-    count: "300+ herbs",
+    href: "/medicinal-plants",
     color: "text-heritage-green",
     bgColor: "bg-heritage-green/10"
   },
@@ -31,7 +31,7 @@ const categories = [
     icon: MapPin,
     title: "Heritage Places",
     description: "Sacred sites and their stories",
-    count: "100+ places",
+    href: "/heritage-map",
     color: "text-heritage-red",
     bgColor: "bg-heritage-red/10"
   },
@@ -39,7 +39,7 @@ const categories = [
     icon: Shield,
     title: "Heroes & Fighters",
     description: "Freedom fighters and local heroes",
-    count: "80+ profiles",
+    href: "/heroes",
     color: "text-heritage-brown",
     bgColor: "bg-heritage-brown/10"
   },
@@ -47,7 +47,7 @@ const categories = [
     icon: Users,
     title: "Ubuntu Voices",
     description: "Elder interviews and wisdom",
-    count: "100+ elders",
+    href: "/ubuntu-voices",
     color: "text-ubuntu",
     bgColor: "bg-ubuntu/10"
   }
@@ -85,11 +85,13 @@ const QuickAccess = () => {
                     {category.description}
                   </p>
                   
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-ubuntu">
-                      {category.count}
-                    </span>
-                    <Button variant="ghost" size="sm" className="group-hover:bg-ubuntu/10">
+                  <div className="flex items-center justify-end">
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="group-hover:bg-ubuntu/10"
+                      onClick={() => window.location.href = category.href}
+                    >
                       Explore →
                     </Button>
                   </div>
