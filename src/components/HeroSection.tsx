@@ -65,16 +65,16 @@ const HeroSection = () => {
             {/* Stats - Enhanced */}
             <div className="flex flex-wrap justify-center lg:justify-start gap-6 sm:gap-8 lg:gap-12">
               <div className="text-center lg:text-left group">
-                <div className="text-3xl sm:text-4xl font-bold bg-gradient-warm bg-clip-text text-transparent mb-1">200+</div>
-                <div className="text-sm sm:text-base text-card/70">Stories Preserved</div>
+                <div className="text-3xl sm:text-4xl font-bold bg-gradient-warm bg-clip-text text-transparent mb-1">Stories</div>
+                <div className="text-sm sm:text-base text-card/70">Preserved</div>
               </div>
               <div className="text-center lg:text-left group">
-                <div className="text-3xl sm:text-4xl font-bold bg-gradient-warm bg-clip-text text-transparent mb-1">50+</div>
-                <div className="text-sm sm:text-base text-card/70">Languages</div>
+                <div className="text-3xl sm:text-4xl font-bold bg-gradient-warm bg-clip-text text-transparent mb-1">Languages</div>
+                <div className="text-sm sm:text-base text-card/70">Documented</div>
               </div>
               <div className="text-center lg:text-left group">
-                <div className="text-3xl sm:text-4xl font-bold bg-gradient-warm bg-clip-text text-transparent mb-1">100+</div>
-                <div className="text-sm sm:text-base text-card/70">Elders</div>
+                <div className="text-3xl sm:text-4xl font-bold bg-gradient-warm bg-clip-text text-transparent mb-1">Elders</div>
+                <div className="text-sm sm:text-base text-card/70">Featured</div>
               </div>
             </div>
           </div>
