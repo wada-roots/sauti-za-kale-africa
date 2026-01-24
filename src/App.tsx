@@ -26,6 +26,7 @@ import Akamba from "./pages/tribes/Akamba";
 import Kalenjin from "./pages/tribes/Kalenjin";
 import Maasai from "./pages/tribes/Maasai";
 import Articles from "./pages/Articles";
+import DownloadScope from "./pages/DownloadScope";
 import AdminLayout from "./components/AdminLayout";
 import AdminDashboard from "./pages/admin/Dashboard";
 import ContentReview from "./pages/admin/ContentReview";
@@ -66,6 +67,7 @@ const App = () => (
     <Route path="/tribes/akamba" element={<Akamba />} />
     <Route path="/tribes/kalenjin" element={<Kalenjin />} />
     <Route path="/tribes/maasai" element={<Maasai />} />
+    <Route path="/download-scope" element={<DownloadScope />} />
 
     {/* Admin Routes */}
     <Route path="/admin/login" element={<AdminLoginPage />} />
